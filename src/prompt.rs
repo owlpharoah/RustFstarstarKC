@@ -4,21 +4,44 @@ pub fn build_explain_prompt(rfc_num: u32, spec_text: &str) -> String {
     format!(
         r#"{system}
 
-RFC {rfc_num} excerpt:
+        RFC {rfc_num} excerpt:
 
-{spec_text}
+        {spec_text}
 
-Generate a clear explanation (explain it like im 10) covering:
-1. What problem this protocol solves
-2. Key concepts and terminology
-3. How the protocol works (high-level flow)
-4. Common use cases
+        Generate TWO outputs:
 
-Length: 500-800 words. Use examples where helpful. Format: Markdown."#,
-        system = BASE_SYSTEM,
-        rfc_num = rfc_num,
-        spec_text = spec_text
-    )
+        ## Part 1: Explanation (Markdown)
+        Generate a clear explanation covering:
+        1. What problem this protocol solves
+        2. Key concepts and terminology
+        3. How the protocol works (high-level flow)
+        4. Common use cases
+
+        Length: 500-800 words. Use examples where helpful.
+
+        ## Part 2: Manim Animation Script
+        Generate a complete, runnable Manim (Community Edition) Python script that visualizes the protocol.
+
+        Requirements:
+        - Use manim.Scene as base class
+        - Create 30-60 second animation showing the protocol flow
+        - Use Text, Arrow, Rectangle, Circle for diagrams
+        - Include self.wait() between transitions
+        - Add narrative text annotations
+        - Show data flow, state transitions, or message exchanges
+        - Keep it simple but informative
+
+        Format the output as:
+
+        ---MARKDOWN---
+        [markdown explanation here]
+        ---MANIM---
+        [complete Python manim script here]
+        ---END---"#,
+                system = BASE_SYSTEM,
+                rfc_num = rfc_num,
+                spec_text = spec_text
+            )
 }
 
 pub fn build_implement_prompt(rfc_num: u32, spec_text: &str, lang: &str, scope: &str) -> String {
