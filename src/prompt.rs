@@ -20,16 +20,18 @@ pub fn build_explain_prompt(rfc_num: u32, spec_text: &str) -> String {
         Length: 500-800 words. Use examples where helpful.
 
         ## Part 2: Manim Animation Script
-        Generate a complete, runnable Manim (Community Edition) Python script that visualizes the protocol.
+        Generate a complete, runnable Manim Python script that visualizes the protocol.
 
         Requirements:
         - Use manim.Scene as base class
         - Create 30-60 second animation showing the protocol flow
-        - Use Text, Arrow, Rectangle, Circle for diagrams
+        - Use Text, Arrow, Rectangle, Circle, Lines, Networks for diagrams
+        -Once components are used, clean the slate reguarly to keep it fresh
+        - Make sure no overlap in between components
         - Include self.wait() between transitions
         - Add narrative text annotations
-        - Show data flow, state transitions, or message exchanges
-        - Keep it simple but informative
+        - Show data flow, state transitions, or message exchanges and all other required sorts of animations
+        - Keep it clean but informative
 
         Format the output as:
 
